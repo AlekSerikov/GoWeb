@@ -16,40 +16,16 @@ func index(w http.ResponseWriter, r *http.Request) {
 	t.ExecuteTemplate(w, "index", nil)
 }
 
-func handleFun() {
+func startApp() {
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	http.HandleFunc("/", index)
 	http.ListenAndServe(":8888", nil)
 }
 
 func main() {
-	handleFun()
+	startApp()
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //package main
 //
@@ -91,16 +67,7 @@ func main() {
 //	http.ListenAndServe(":8888", nil)
 //}
 
-
-
-
-
-
-
 //database
-
-
-
 
 //type User struct {
 //	Name string `json:"name"` //json output format
